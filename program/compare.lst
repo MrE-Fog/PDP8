@@ -1,0 +1,17 @@
+
+
+
+          /Compare numbers in memory at OPD1 and OPD2                     Page 1
+
+
+    1                  /Compare numbers in memory at OPD1 and OPD2
+    2 00200  7300              CLA CLL     /Must start with 0 in AC and link
+    3 00201  1070              TAD 70      /Load first operand into AC (by adding it to 0); link is still clear
+    4 00202  7041              CIA         /Complement, then increment AC, negating it
+    5 00203  1100              TAD 100     /AC now has OPD2-OPD1; if OPD2≥OPD1, sum overflows and link is set
+    6 00204  7430              SZL         /Skip if link is clear
+    7 00205  5110              JMP 110     /Jump somewhere in the case that OPD2≥OPD1;
+    8                                      /Otherwise, fall through to code below.
+    9                          $
+      No detected errors
+      No links generated
